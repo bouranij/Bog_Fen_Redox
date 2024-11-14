@@ -755,6 +755,10 @@ bog_counts_raw <- read_delim('./Data/metaT/htseq_2304MAGs_UCD_bog_100M_97_REVSTR
   filter(!gene %in% c('__no_feature', '__ambiguous')) %>%
   column_to_rownames('gene') 
 
+saveRDS(bog_counts_raw, './Data/metaT/bog_counts_raw.rds')
+
+
+
 ## Fen ---------------------------------------------------------------------
 
 #Read in the raw count data for the fen:
@@ -775,6 +779,8 @@ fen_counts_raw <- read_delim('./Data/metaT/htseq_2304MAGs_100M_97_REVSTRANDED_no
   #Remove ambiguous and unmapped genes:
   filter(!gene %in% c('__no_feature', '__ambiguous')) %>%
   column_to_rownames('gene')
+
+
 
 ## Metadata ---------------------------------------------------------------
 
@@ -930,6 +936,9 @@ bf_tc_counts <- full_join(rownames_to_column(bog_small_nz, 'gene'), rownames_to_
   pivot_longer(cols = starts_with('STM_'), names_to = 'sample', values_to = 'getmm') %>%
   replace_na(list('getmm' = 0)) %>%
   pivot_wider(names_from = 'sample', values_from = 'getmm')
+
+#Final geTMM data can be downloaded from Supplementary Data 5
+
 
 ```
 
